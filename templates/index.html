@@ -59,7 +59,7 @@
     <!-- Full width image header with portrait -->
     <header class="header image-bg-header">
         <div class="header-content header-text">
-            <h2>Tensorflow Image Style Transfer Server</h2>
+            <h2>Image Style Transfer</h2>
             <h4>App and Web Intelligence</h4>
         </div>
     </header>
@@ -93,10 +93,18 @@
                             <div class="">{{ message }}</div>
                           {% endfor %}
                           <div class="form-group">
-                              <label for="file">Select picture (JPG and JPEG format allowed)</label>
+                              <label for="file">Select CONTENT picture (JPG and JPEG format allowed)</label>
                               <input type="file" name="file">
                           </div>
                           <div class="form-group">
+                              <label for="file">Select STYLE picture (JPG and JPEG format allowed)</label>
+                              <input type="file" name="file">
+                          </div>
+
+
+
+
+                          <!-- <div class="form-group">
                             <label for="Select the style to modify the image">Select the style to modify the image (See images below for description)</label>
                             <select class="form-control" name="checkpoint">
                               <option value="la_muse.ckpt"> A Muse - Pablo Picasso </option>
@@ -106,23 +114,25 @@
                               <option value="wave.ckpt"> The Great Wave off Kanagawa - Katsushika Hokusai </option>
                               <option value="wreck.ckpt"> The Shipwreck of the Minotaur - J. M. W. Turner </option>
                             </select>
-                          </div>
+                          </div> -->
+
+
                           <button type="submit"  id="sendImage" class="btn btn-default">Send image</button>
                         </div>
                       </div>
                     </form>
 
-                    <h4>Styles available</h4>
-                  <div class="float-container">
-                      <div class="float-item">
+                    <!-- <h4>Styles available</h4> -->
+                  <!-- <div class="float-container"> -->
+                      <!-- <div class="float-item">
                           <img style="height: 200px;" src="../static/images/styles/la_muse.jpg">
                           <p class="text-center">A Muse<br>Pablo Picasso</p>
-                      </div>
-                      <div class="float-item">
+                      </div> -->
+                      <!-- <div class="float-item">
                           <img style="height: 200px;" src="../static/images/styles/rain_princess.jpg" alt="">
                           <p class="text-center">Rain Princess<br>Leonid Afremov</p>
-                      </div>
-                      <div class="float-item">
+                      </div> -->
+                      <!-- <div class="float-item">
                           <img style="height: 200px;" src="../static/images/styles/the_scream.jpg" alt="">
                           <p class="text-center">The Scream<br>Edvard Munch</p>
                       </div>
@@ -133,13 +143,13 @@
                       <div class="float-item">
                           <img style="height: 200px;" src="../static/images/styles/wave.jpg" alt="">
                           <p class="text-center">The Great Wave off Kanagawa <br>Katsushika Hokusai</p>
-                      </div>
-                      <div class="float-item">
+                      </div> -->
+                      <!-- <div class="float-item">
                           <img style="height: 200px;" src="../static/images/styles/wreck.jpg" alt="">
                           <p class="text-center">The Shipwreck of the Minotaur<br>J. M. W. Turner</p>
-                      </div>
-                      <br class="clearfloat">
-                  </div>
+                      </div> -->
+                      <!-- <br class="clearfloat">
+                  </div> -->
               </div>
             <!-- /.row -->
             </div>
