@@ -61,6 +61,7 @@ def style_transfer():
         output_filepath = os.path.join('./out_images/', content_filename)
 
         content_image.save(content_filepath)
+        style_images.save(style_filepath)
 
         # Get checkpoint filename from la_muse
         # checkpoint = request.form.get("checkpoint") or "la_muse.ckpt"
