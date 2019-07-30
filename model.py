@@ -1,4 +1,4 @@
-!pip install tensorflow-gpu==2.0.0-beta1
+# !pip install tensorflow-gpu==2.0.0-beta1
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import scipy.misc, numpy as np, os, sys
