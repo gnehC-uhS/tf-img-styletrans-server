@@ -65,7 +65,7 @@ def style_transfer():
 
         # Get checkpoint filename from la_muse
         # checkpoint = request.form.get("checkpoint") or "la_muse.ckpt"
-        ffwd_to_img(content_filepath, style_filepath, output_filepath, './input/' + checkpoint, '/gpu:0')
+        ffwd_to_img(content_filepath, style_filepath, output_filepath)
         return send_file(output_filepath, mimetype='image/jpg')
         # return send_file(input_filepath, mimetype='image/jpg')
 
