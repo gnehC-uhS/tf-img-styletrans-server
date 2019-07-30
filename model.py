@@ -1,8 +1,8 @@
-# !pip install tensorflow-gpu==2.0.0-beta1
+!pip install tensorflow-gpu==2.0.0-beta1
 import tensorflow as tf
 import matplotlib.pyplot as plt
-import scipy.misc, numpy as np, os, sys
-
+import numpy as np
+ 
 
 def load_img(path_to_img):
     """
@@ -25,10 +25,6 @@ def load_img(path_to_img):
     # add a new axis to the 1st shape position
     img = img[tf.newaxis, :]
     return img
-
-def save_img(out_path, img):
-    img = np.clip(img, 0, 255).astype(np.uint8)
-    scipy.misc.imsave(out_path, img)
 
 
 def imshow(image, title=None):
@@ -162,10 +158,14 @@ def ffwd(content_path, style_path, paths_out, device_t='/gpu:0', epochs = 4, ste
     global content_targets 
     content_targets = extractor(content_im)['content']
     
+    global opt 
     opt = tf.optimizers.Adam(learning_rate = 0.02, beta_1 = 0.99, epsilon = 1e-1)
+    global style_weight 
     style_weight = 1e-2
+    global content_weight 
     content_weight = 1e4
-    total_variation_weight=1e8
+    global total_variation_weight
+    total_variation_weight =1e8
 
     
     image = tf.Variable(content_im)
@@ -175,7 +175,8 @@ def ffwd(content_path, style_path, paths_out, device_t='/gpu:0', epochs = 4, ste
             step += 1
             train_step(image)
     output = image.read_value()
-    save_img(paths_out, output)
+    # save_img(paths_out, output)
+    plt.imsave(out_path, output[0])
 
 def ffwd_to_img(content_im, style_im, out_path, device='/cpu:0'):
     ffwd(content_im, style_im, paths_out = out_path, epochs = 1, device_t=device)
