@@ -42,7 +42,7 @@ blockquote {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    background: url('../images/banner-bg-2016-blurred.jpg') no-repeat center center scroll;
+    background: url('../images/banner.jpg') no-repeat center center scroll;
     height: 300px;
 }
 
