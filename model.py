@@ -22,7 +22,6 @@ def load_img(path_to_img):
     new_shape = tf.cast(shape * scale, tf.int32)
 
     img = tf.image.resize(img, new_shape)
-    # img.set_shape(new_shape)
     # add a new axis to the 1st shape position
     img = img[tf.newaxis, :]
     return img

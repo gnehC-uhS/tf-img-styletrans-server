@@ -3,7 +3,6 @@ from flask import Flask, render_template, send_file, request
 from werkzeug.exceptions import BadRequest
 from werkzeug.utils import secure_filename
 
-# from evaluate import ffwd_to_img
 from model import ffwd
 
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
@@ -25,8 +24,8 @@ def style_transfer():
     # check if the post request has the file part
     if 'content' not in request.files:
         return BadRequest("Content File not present in request")
-    # if 'style' not in request.files:
-    #     return BadRequest("Style File not present in request")
+    if 'style' not in request.files:
+        return BadRequest("Style File not present in request")
 
     content_image = request.files['content']
     style_image = request.files['style']
@@ -47,13 +46,8 @@ def style_transfer():
         content_image.save(content_filepath)
         style_image.save(style_filepath)
 
-        # Get checkpoint filename from la_muse
-        # checkpoint = request.form.get("checkpoint") or "la_muse.ckpt"
-        # ffwd_to_img(content_filepath, style_filepath, output_filepath)
         ffwd(content_filepath, style_filepath, output_filepath, epochs = 1, steps_per_epoch = 10)
         return send_file(output_filepath, mimetype='image/jpg')
-        # return send_file(output_filepath, mimetype='image/jpg')
-        # return send_file(input_filepath, mimetype='image/jpg')
 
 
 def allowed_file(filename):
