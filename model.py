@@ -2,7 +2,7 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
- 
+tf.compat.v1.enable_eager_execution()
 
 def load_img(path_to_img):
     """
@@ -12,16 +12,17 @@ def load_img(path_to_img):
     """
     max_dim = 512
     img = tf.io.read_file(path_to_img)
-    img = tf.image.decode_image(img, channels=3)
+    img = tf.image.decode_jpeg(img, channels=3)
     img = tf.image.convert_image_dtype(img, tf.float32)
     # [:-1] slices the string to omit the last character (the color channel in the shape)
     shape = tf.cast(tf.shape(img)[:-1], tf.float32)
-    long_dim = max(shape)
+    long_dim = tf.math.reduce_max(shape)
     scale = max_dim / long_dim
 
     new_shape = tf.cast(shape * scale, tf.int32)
 
     img = tf.image.resize(img, new_shape)
+    # img.set_shape(new_shape)
     # add a new axis to the 1st shape position
     img = img[tf.newaxis, :]
     return img
@@ -137,8 +138,8 @@ def ffwd(content_path, style_path, paths_out, device_t='/gpu:0', epochs = 4, ste
 
     step = 0
     
-    content_path = tf.keras.utils.get_file('content.jpg',content_path)
-    style_path = tf.keras.utils.get_file('style.jpg',style_path)
+    # content_path = tf.keras.utils.get_file('content.jpg',content_path)
+    # style_path = tf.keras.utils.get_file('style.jpg',style_path)
     content_im = load_img(content_path)
     style_im = load_img(style_path)
     
@@ -159,7 +160,7 @@ def ffwd(content_path, style_path, paths_out, device_t='/gpu:0', epochs = 4, ste
     content_targets = extractor(content_im)['content']
     
     global opt 
-    opt = tf.optimizers.Adam(learning_rate = 0.02, beta_1 = 0.99, epsilon = 1e-1)
+    opt = tf.compat.v1.train.AdamOptimizer(learning_rate = 0.02, beta1 = 0.99, epsilon = 1e-1)
     global style_weight 
     style_weight = 1e-2
     global content_weight 
@@ -176,7 +177,7 @@ def ffwd(content_path, style_path, paths_out, device_t='/gpu:0', epochs = 4, ste
             train_step(image)
     output = image.read_value()
     # save_img(paths_out, output)
-    plt.imsave(out_path, output[0])
+    plt.imsave(paths_out, output[0])
 
 def ffwd_to_img(content_im, style_im, out_path, device='/cpu:0'):
     ffwd(content_im, style_im, paths_out = out_path, epochs = 1, device_t=device)

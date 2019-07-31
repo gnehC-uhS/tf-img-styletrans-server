@@ -2,6 +2,7 @@ venv
 *.pyc
 node_modules
 static/js/main.js
+/static
 
 in_images/*
 out_images/*
