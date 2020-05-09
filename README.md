@@ -7,7 +7,7 @@ This is a project I worked on during the summer of 2019. It demos a Fast Style T
 - Python >=3.4
   - TensorFlow >=1.4
   
-## For production:
+### For production:
 - Run ```pip install -r requirements.txt ``` in your command line, before running ```python3 main.py```. This updates necessary packages.
 
 ## License
