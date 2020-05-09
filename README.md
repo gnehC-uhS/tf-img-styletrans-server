@@ -1,6 +1,6 @@
 # Tensorflow Image Style Transfer Server
 
-This is a project I worked on during the summer of 2019. It demos a Fast Style Transfer. A set of simple Generative Adversarial Networks in ```model.py```is used to transform the content image to any given style image. The demo is available on: https://faststyle.herokuapp.com/.
+This is a project I worked on by myself during my after-work time in the summer of 2019. It demos a Fast Style Transfer. A set of simple Generative Adversarial Networks in ```model.py```is used to transform the content image to any given style image. The demo is available on: https://faststyle.herokuapp.com/.
 
 ### Requirement ###
 
